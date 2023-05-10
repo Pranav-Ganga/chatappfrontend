@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-require('dotenv').config();
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 //define a service using base url
 
 const appApi = createApi({
     reducerPath: 'appApi',
     baseQuery: fetchBaseQuery({
-        baseUrl:  `${process.env.REACT_APP_SERVER_URL}`
+        baseUrl:  `${SERVER_URL}`
     }),
     endpoints: (builder) => ({
         //creating a user
