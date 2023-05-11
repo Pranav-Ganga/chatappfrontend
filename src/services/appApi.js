@@ -1,12 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
 //define a service using base url
 
 const appApi = createApi({
     reducerPath: 'appApi',
     baseQuery: fetchBaseQuery({
-        baseUrl:  `${SERVER_URL}`
+        baseUrl:"https://mern-stack-chat-web-app.onrender.com"
     }),
+
     endpoints: (builder) => ({
         //creating a user
         signupUser: builder.mutation({
