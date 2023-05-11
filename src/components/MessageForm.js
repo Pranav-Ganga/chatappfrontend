@@ -13,7 +13,7 @@ function MessageForm() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-  
+
 
   function getFormattedDate() {
     const date = new Date();
@@ -28,12 +28,9 @@ function MessageForm() {
     return month + "/" + day + "/" + year;
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
 
-  function scrollToBottom(){
-    messageEndRef.current?.scrollIntoView({behavior: 'smooth'}); 
+  function scrollToBottom() {
+    messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
   const todayDate = getFormattedDate();
@@ -58,14 +55,14 @@ function MessageForm() {
   return (
     <>
       <div className="messages-output">
-        {user && !privateMemberMsg?._id && <div className='alert alert-info'>Your are in {currentRoom} room</div> }
+        {user && !privateMemberMsg?._id && <div className='alert alert-info'>Your are in {currentRoom} room</div>}
         {user && privateMemberMsg?._id && (
           <>
-          <div className='alert alert-info conversation-info'>
-            <div>
-              Your Converstion with {privateMemberMsg.name} <img src={privateMemberMsg.picture} className='conversation-profile-picture' />
+            <div className='alert alert-info conversation-info'>
+              <div>
+                Your Converstion with {privateMemberMsg.name} <img src={privateMemberMsg.picture} className='conversation-profile-picture' />
+              </div>
             </div>
-          </div>
           </>
         )}
         {!user && <div className="alert alert-danger">please login</div>}
@@ -103,7 +100,7 @@ function MessageForm() {
               )}
             </div>
           ))}
-          <div ref={messageEndRef}/>
+        <div ref={messageEndRef} />
       </div>
       <Form onSubmit={handleSubmit}>
         <Row>

@@ -45,7 +45,7 @@ const Sidebar = () => {
       socket.emit("join-room", "general");
       socket.emit("new-user");
     }
-  }, []);
+  }, [getRooms, socket, setCurrentRoom, user]);
 
   socket.off("new-user").on("new-user", (payload) => {
     setMembers(payload);
