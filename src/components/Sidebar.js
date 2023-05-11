@@ -45,17 +45,18 @@ const Sidebar = () => {
       socket.emit("join-room", "general");
       socket.emit("new-user");
     }
-  }, [getRooms, socket, setCurrentRoom, user]);
+    function getRooms() {
+      fetch('https://mern-stack-chat-web-app.onrender.com/rooms')
+        .then((res) => res.json())
+        .then((data) => setRooms(data));
+    }
+  
+  }, [socket, setCurrentRoom, user, setRooms]);
 
   socket.off("new-user").on("new-user", (payload) => {
     setMembers(payload);
   });
 
-  function getRooms() {
-    fetch('http://localhost:5001/rooms')
-      .then((res) => res.json())
-      .then((data) => setRooms(data));
-  }
 
   function orderIds(id1, id2) {
     if (id1 > id2) {
@@ -111,7 +112,7 @@ const Sidebar = () => {
           >
             <Row>
               <Col xs={2} className="member-status">
-                <img src={member.picture} className="member-status-img" />
+                <img src={member.picture} alt="profile pic" className="member-status-img" />
                 {member.status === "online" ? (
                   <i className="fas fa-circle sidebar-online-status"></i>
                 ) : (
